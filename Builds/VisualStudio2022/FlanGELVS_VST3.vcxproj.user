@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommand>C:\Users\gabry\OneDrive\Desktop\PoliMi\CMLS - Computer Music_Language and Systems\juce-6.1.5-windows\JUCE\AudioPluginHost.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>
