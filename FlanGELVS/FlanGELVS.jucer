@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="u6xSns" name="FlanGELVS" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginManufacturer="GELVS-CMLS"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginManufacturer="GELVS-CMLS-PoliMI"
               pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="fxRRVI" name="FlanGELVS">
     <GROUP id="{0DB3C1F5-C978-5FB4-F6DA-37CB107FD7CA}" name="Resources">

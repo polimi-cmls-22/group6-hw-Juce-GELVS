@@ -29,7 +29,7 @@
     <array>
       <dict>
         <key>name</key>
-        <string>GELVS-CMLS: FlanGELVS</string>
+        <string>GELVS-CMLS-PoliMI: FlanGELVS</string>
         <key>description</key>
         <string>FlanGELVS</string>
         <key>factoryFunction</key>
