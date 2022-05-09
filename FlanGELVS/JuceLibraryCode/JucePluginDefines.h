@@ -44,7 +44,7 @@
  #define JucePlugin_Desc                   "FlanGELVS"
 #endif
 #ifndef  JucePlugin_Manufacturer
- #define JucePlugin_Manufacturer           "PoliMI"
+ #define JucePlugin_Manufacturer           "GELVS-CMLS"
 #endif
 #ifndef  JucePlugin_ManufacturerWebsite
  #define JucePlugin_ManufacturerWebsite    ""
@@ -149,7 +149,7 @@
  #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
- #define JucePlugin_IAAName                "PoliMI: FlanGELVS"
+ #define JucePlugin_IAAName                "GELVS-CMLS: FlanGELVS"
 #endif
 #ifndef  JucePlugin_VSTNumMidiInputs
  #define JucePlugin_VSTNumMidiInputs       16
