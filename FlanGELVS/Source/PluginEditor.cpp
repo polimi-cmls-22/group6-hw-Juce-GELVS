@@ -171,8 +171,8 @@ void FlanGELVSAudioProcessorEditor::paint (juce::Graphics& g)
     g.setFont(20.0f);
     g.drawImageAt(backgroundImage, 0, 0);
 
-    g.setFont(juce::Font("Arial", 25.0f, juce::Font::bold));
-    //g.drawFittedText("--FLANGELVS (Flanger effect)--", getLocalBounds(), juce::Justification::centredTop, 1);
+    g.setFont(juce::Font("Arial", 40.0f, juce::Font::bold));
+    //g.drawFittedText("FLANGELVS", getLocalBounds(), juce::Justification::centredTop, 1);
 }
 
 void FlanGELVSAudioProcessorEditor::resized()

@@ -147,10 +147,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\PoliMi\CMLS - Computer Music_Language and Systems\juce-6.1.5-windows\JUCE\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp">
+    <ClCompile Include="..\..\..\..\..\juce-6.1.5-windows\JUCE\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\PoliMi\CMLS - Computer Music_Language and Systems\juce-6.1.5-windows\JUCE\modules\juce_audio_plugin_client\juce_audio_plugin_client_VST3.cpp">
+    <ClCompile Include="..\..\..\..\..\juce-6.1.5-windows\JUCE\modules\juce_audio_plugin_client\juce_audio_plugin_client_VST3.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_plugin_client_VST3.cpp"/>
