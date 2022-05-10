@@ -11,6 +11,7 @@
 ![VST_Creation](https://user-images.githubusercontent.com/48025739/167652675-54252358-f5fb-481c-82d1-2e0ec95dc9f6.png)  
 
 2 - Run the AudioPluginHost, insert the VST of the Plugin and play it  
+![Open_APH](https://user-images.githubusercontent.com/48025739/167653307-ee4cbb4a-2086-4f81-ad2f-336bfa5ecf0e.png)
 
 For more information, read the report: CMLS_Homework#2_Report.pdf .
 
