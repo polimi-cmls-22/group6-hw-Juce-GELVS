@@ -116,7 +116,7 @@ FlanGELVSAudioProcessorEditor::FlanGELVSAudioProcessorEditor (FlanGELVSAudioProc
     /*=====================================================================================================*/
     juce::AudioParameterFloat* phaseParameter = (juce::AudioParameterFloat*)params.getUnchecked(4);
 
-    phaseOffsetSlider.setBounds(250, 250, 120, 120);
+    phaseOffsetSlider.setBounds(200, 250, 120, 120);
     phaseOffsetSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalDrag);
     phaseOffsetSlider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 50, 25);
     phaseOffsetSlider.setColour(phaseOffsetSlider.textBoxOutlineColourId, juce::Colour());

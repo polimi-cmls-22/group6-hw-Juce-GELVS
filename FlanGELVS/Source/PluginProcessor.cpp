@@ -47,7 +47,7 @@ FlanGELVSAudioProcessor::FlanGELVSAudioProcessor()
     addParameter(phaseOffsetValue = new juce::AudioParameterFloat("phaseoffset",
         "Phase Offset",
         0.0f,
-        1.0f,
+        5.0f,
         0.0f));
     addParameter(ampValue = new juce::AudioParameterFloat("amplitude",
         "Amplitude",
@@ -222,7 +222,7 @@ void FlanGELVSAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, ju
     for (int i = 0; i < buffer.getNumSamples(); i++) {
 
         /*generate LFO output*/
-        float lfoOut = *ampValue * sin(2 * juce::MathConstants<float>::pi * phaseLFO);
+        float lfoOut = *ampValue * sin(2 * juce::MathConstants<float>::pi * phaseLFO + *phaseOffsetValue);
 
         /*moves LFO phase forwad*/
         phaseLFO += *rateValue / getSampleRate();
