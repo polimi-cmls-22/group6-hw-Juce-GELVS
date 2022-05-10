@@ -8,11 +8,11 @@
   
 ![FlanGELVS_Plugin](https://user-images.githubusercontent.com/48025739/167653574-7347eb22-c481-4538-96bd-7e69906ad41c.png)
 
-### Play the VST with AudioPluginHost (Windows)
-1 - Compile the VST of the Plugin on Visual Studio
+### Play with AudioPluginHost (Windows)
+1 - Compile the VST3 of the Plugin on Visual Studio
 ![VST_Creation](https://user-images.githubusercontent.com/48025739/167652675-54252358-f5fb-481c-82d1-2e0ec95dc9f6.png)  
 
-2 - Run the AudioPluginHost, insert the VST of the Plugin and play it  
+2 - Run the AudioPluginHost, insert the VST3 of the Plugin and play it  
 ![Open_APH](https://user-images.githubusercontent.com/48025739/167662261-528c93ce-4558-4d87-8bd0-faf34c234b97.png)
 
 It is aslo possible to use it into other music software (Reaper, Logic etc...)  
