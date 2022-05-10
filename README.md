@@ -5,6 +5,8 @@
 2- Go into the folder FlanGELVS and open with projucer the file FlanGELVS.jucer .  
 3- Open it with Visual Studio (2019 or 2022 version) or XCode and debug the program .  
 4- Have fun with our flanger :D  
+  
+![FlanGELVS_Plugin](https://user-images.githubusercontent.com/48025739/167653574-7347eb22-c481-4538-96bd-7e69906ad41c.png)
 
 ### Play the VST with AudioPluginHost (Windows)
 1 - Compile the VST of the Plugin on Visual Studio
