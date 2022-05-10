@@ -7,6 +7,10 @@
 4- Have fun with our flanger :D  
 
 ### Play the VST with AudioPluginHost (Windows)
+1 - Compile the VST of the Plugin on Visual Studio
+![VST_Creation](https://user-images.githubusercontent.com/48025739/167652675-54252358-f5fb-481c-82d1-2e0ec95dc9f6.png)  
+
+2 - Run the AudioPluginHost, insert the VST of the Plugin and play it  
 
 For more information, read the report: CMLS_Homework#2_Report.pdf .
 
