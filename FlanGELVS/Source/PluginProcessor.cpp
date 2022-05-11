@@ -286,7 +286,7 @@ void FlanGELVSAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, ju
             circularBufferWriteHead = 0;
         }
 
-        /*Sum the dryand delayed signalsaccording to the DryWet parameter*/
+        /*Sum the dry/wet to the delayed signals according to the DryWet parameter*/
         buffer.setSample(0, i, buffer.getSample(0, i) * (1 - (*dryWetValue)) + delay_sample_left * (*dryWetValue));
         buffer.setSample(1, i, buffer.getSample(1, i) * (1 - (*dryWetValue)) + delay_sample_right * (*dryWetValue));
 
