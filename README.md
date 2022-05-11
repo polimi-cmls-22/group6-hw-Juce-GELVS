@@ -15,7 +15,7 @@
 2 - Run the AudioPluginHost, insert the VST3 of the Plugin and play it  
 ![Open_APH](https://user-images.githubusercontent.com/48025739/167662261-528c93ce-4558-4d87-8bd0-faf34c234b97.png)
 
-It is aslo possible to use it into other music software (Reaper, Logic etc...)  
+It is also possible to use it into other music software (Reaper, Logic etc...)  
 
 For more information, read the report: CMLS_Homework#2_Report.pdf .
 
