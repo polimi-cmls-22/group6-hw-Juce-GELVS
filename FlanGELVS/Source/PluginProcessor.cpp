@@ -241,6 +241,7 @@ void FlanGELVSAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, ju
         /*Define the parameters of the flanger*/
         /*Map LFO to oscillate between 1ms and 5ms*/
         lfoOutMapped = juce::jmap(lfoOut, -1.0f, 1.0f, 0.001f, 0.005f);
+        
 
 
         /*Calculate the delay time in samples accoring to the LFO*/
