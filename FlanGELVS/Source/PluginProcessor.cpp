@@ -22,18 +22,18 @@ FlanGELVSAudioProcessor::FlanGELVSAudioProcessor()
                        )
 #endif
 {
-    /*  Initial setup of the knobs parameters   */
+    /*Initial setup of the knobs parameters*/
 
     addParameter(dryWetValue = new juce::AudioParameterFloat("drywet",
         "Dry/Wet",
         0.0,
         1.0,
-        0.5));
+        0.3));
     addParameter(depthValue = new juce::AudioParameterFloat("depth",
         "Depth",
-        0.01f,
-        1.0f,
-        0.5f));
+        0.0,
+        1.0,
+        0.3));
     addParameter(rateValue = new juce::AudioParameterFloat("rate",
         "Rate",
         0.1f,
@@ -41,9 +41,9 @@ FlanGELVSAudioProcessor::FlanGELVSAudioProcessor()
         0.5f));
     addParameter(feedbackValue = new juce::AudioParameterFloat("feedback",
         "Feedback",
-        0.01f,
-        0.99f,
-        0.5f));
+        0.01,
+        0.99,
+        0.2));
     addParameter(phaseOffsetValue = new juce::AudioParameterFloat("phaseoffset",
         "Phase Offset",
         0.0f,
@@ -55,7 +55,7 @@ FlanGELVSAudioProcessor::FlanGELVSAudioProcessor()
         3.0,
         1.0));
 
-    /*  Initial setup of the flanger delay parameters  */
+    /*Initial setup of the flanger delay parameters*/
     phaseLFO = 0;
     delayTime = 0;
     feedbackLeft = 0;
@@ -142,21 +142,21 @@ void FlanGELVSAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBl
 
     /*initialize data for current sample rate, reset Phase and writeHeads*/
 
-    /*initialize phase*/
+    /*Initialize phase*/
     phaseLFO = 0;
-    /*calculate circular buffer length*/
+    /*Set the circular buffer length*/
     circularBufferLength = sampleRate * MAX_DELAY_TIME;
-    /*initialize left buffer*/
+    /*Initialize left buffer*/
     circularBufferLeft.reset(new double[circularBufferLength]);
-    /*clear junk data in new buffer*/
+    /*Clear junk data in new buffer*/
     juce::zeromem(circularBufferLeft.get(), circularBufferLength * sizeof(double));
-    /*initialize right buffer*/
+    /*Initialize right buffer*/
     circularBufferRight.reset(new double[circularBufferLength]);
-    /*clear junk data in new buffer*/
+    /*Clear junk data in new buffer*/
     juce::zeromem(circularBufferRight.get(), circularBufferLength * sizeof(double));
-    /*initialize writeHear to 0*/
+    /*Initialize the buffer write head to 0*/
     circularBufferWriteHead = 0;
-    /*initialize delayTime to 1*/
+    /*Initialize delayTime to 1*/
     delayTime = 1;
 }
 
@@ -214,69 +214,78 @@ void FlanGELVSAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, ju
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
 
-    /*obtain left and right audio data pointers*/
+    /*Obtain left and right audio data pointers*/
     float* leftChannel = buffer.getWritePointer(0);
     float* rightChannel = buffer.getWritePointer(1);
 
-    /*iterate all samples through the buffer*/
+    /*Iterate all samples through the buffer*/
     for (int i = 0; i < buffer.getNumSamples(); i++) {
 
-        /*generate LFO output*/
+        /*Generate LFO output*/
         float lfoOut = *ampValue * sin(2 * juce::MathConstants<float>::pi * phaseLFO + *phaseOffsetValue);
 
-        /*moves LFO phase forwad*/
+        /*Moves LFO phase forwad*/
+        /*Set the LFO frequency according to the Rate parameter*/
         phaseLFO += *rateValue / getSampleRate();
+        /*In case it's out of range*/
         if (phaseLFO > 1) {
             phaseLFO -= 1;
         }
 
-        /* control parameter for LFO depth*/
+        /*Control parameter for LFO depth : apply the Depth parameter to the LFO waveform*/
         lfoOut = lfoOut * *depthValue;
 
-        /* map LFO output to desired delay times*/
+        /*Declare the mapped LFOs : map LFO output to desired delay times*/
         float lfoOutMapped = 0;
 
-        /* define the parameters of the flanger */
+        /*Define the parameters of the flanger*/
+        /*Map LFO to oscillate between 1ms and 5ms*/
         lfoOutMapped = juce::jmap(lfoOut, -1.0f, 1.0f, 0.001f, 0.005f);
 
 
-        /* calculate delay times in samples*/
+        /*Calculate the delay time in samples accoring to the LFO*/
         delayTime = delayTime - 0.001 * (delayTime - lfoOutMapped);
         delayTimeInSamples = getSampleRate() * delayTime;
 
-        /*write into circular buffer*/
+        /*Write into circular buffer : populate the circular buffer with the current write sample plus feedback*/
         circularBufferLeft.get()[circularBufferWriteHead] = leftChannel[i] + feedbackLeft;
         circularBufferRight.get()[circularBufferWriteHead] = rightChannel[i] + feedbackRight;
 
-        /* calulate read head position*/
+        /*Calulate read head position*/
+        /*Set up the delay read head*/
         delayReadHead = circularBufferWriteHead - delayTimeInSamples;
-
+        /*In case it's not within the buffer range*/
         if (delayReadHead < 0) {
             delayReadHead = circularBufferLength + delayReadHead;
         }
 
-        /* calculate interpolation points */
+        /*Calculate interpolation points*/
+        /*Set up variables for linear interpolation*/
         int readHeadInt_x = (int)delayReadHead;
         int readHeadInt_x1 = readHeadInt_x + 1;
         float readHeadRemainderFloat = delayReadHead - readHeadInt_x;
+        /*Wrapping around circular buffer if we are over the length*/
         if (readHeadInt_x >= circularBufferLength) {
-            readHeadInt_x -= circularBufferLength; //Wrapping around circular buffer if we are over the length
+            readHeadInt_x -= circularBufferLength;
         }
 
-        /* generate left and right output samples*/
+        /*Perform linear interpolation for delay sample on both left and right output samples*/
         float delay_sample_left = linear_interp(circularBufferLeft.get()[readHeadInt_x], circularBufferLeft.get()[readHeadInt_x1], readHeadRemainderFloat);
         float delay_sample_right = linear_interp(circularBufferRight.get()[readHeadInt_x], circularBufferRight.get()[readHeadInt_x1], readHeadRemainderFloat);
 
+        /*Calculate the feedback according to the Feedback parameter*/
         feedbackLeft = delay_sample_left * (*feedbackValue);
         feedbackRight = delay_sample_right * (*feedbackValue);
 
-        /* update of the buffer */
+        /*Update of the buffer */
+        /*Increment the write head circular buffer iterator*/
         circularBufferWriteHead++;
-
+        /*In case it's out of range*/
         if (circularBufferWriteHead >= circularBufferLength) {
             circularBufferWriteHead = 0;
         }
 
+        /*Sum the dryand delayed signalsaccording to the DryWet parameter*/
         buffer.setSample(0, i, buffer.getSample(0, i) * (1 - (*dryWetValue)) + delay_sample_left * (*dryWetValue));
         buffer.setSample(1, i, buffer.getSample(1, i) * (1 - (*dryWetValue)) + delay_sample_right * (*dryWetValue));
 

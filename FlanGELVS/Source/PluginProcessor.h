@@ -56,6 +56,8 @@ public:
 
     /*===============================================================================*/
     /* Function: Linear Interpolation  */
+    // calculate the interpolated sample at position 'inPhase' between two samples 'x' and 'x1
+
     float linear_interp(float sample_x, float sample_x1, float inPhase) {
         return (1 - inPhase) * sample_x + inPhase * sample_x1;
     }
